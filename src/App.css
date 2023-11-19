@@ -1,0 +1,13 @@
+html {
+  font-size: 62.5%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0 auto;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+  background-color: #eaecf0;
+}
