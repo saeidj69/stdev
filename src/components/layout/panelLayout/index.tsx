@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Navbar from "../../navbar";
+import Navbar from "../../multiLanguage";
 import { StyledContainer } from "./style";
 import { Avatar } from "antd";
 import { DownOutlined } from "@ant-design/icons";
@@ -36,12 +36,8 @@ const PanelLayout = ({ children }: PanelLayoutProps) => {
   const navigate = useNavigate();
 
   const onClick: MenuProps["onClick"] = ({ key }) => {
-    if(key=='1'){
-      
-      navigate("/");
 
-    }
-    else if(key=='2'){
+     if(key=='1'){
       
       navigate("/posts");
 
@@ -87,15 +83,9 @@ const PanelLayout = ({ children }: PanelLayoutProps) => {
                 onClick={onClick}
                 defaultSelectedKeys={["1"]}
                 items={[
+            
                   {
                     key: "1",
-                    icon: <UserOutlined />,
-                    label: "home",
-                    
-                
-                  },
-                  {
-                    key: "2",
                     icon: <VideoCameraOutlined />,
                     label: "posts",
                    
@@ -116,7 +106,7 @@ const PanelLayout = ({ children }: PanelLayoutProps) => {
                   type="text"
                   className="isShow"
                   icon={
-                    collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />
+                    collapsed ?<MenuUnfoldOutlined /> : <MenuFoldOutlined /> 
                   }
                   onClick={() => setCollapsed(!collapsed)}
                   style={{
@@ -145,10 +135,7 @@ const PanelLayout = ({ children }: PanelLayoutProps) => {
             style={{
               background: colorBgContainer,
               overflowY: "auto",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              maxHeight: "85dvh",
+              height: "85dvh",
               padding: "50px",
             }}
           >

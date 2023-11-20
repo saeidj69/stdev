@@ -29,6 +29,7 @@ export const RegisterApi = async (data: any) => {
   formData.append("email", data.email);
   formData.append("password", data.password);
   formData.append("image", data.image);
+  store.dispatch(activeLoading());
 
   try {
     const res = await axios.post(baseUrl + `api/user/sign-up/`, formData, {
@@ -39,10 +40,12 @@ export const RegisterApi = async (data: any) => {
     //localStorage.clear();
     //localStorage.setItem("token", res.data.data.token);
     //localStorage.setItem("rfToken", res.data.data.refreshToken);
+    store.dispatch(deActiveLoaing());
+
     return res.data;
   } catch (err) {
+    store.dispatch(deActiveLoaing());
+
     throw err;
   }
 };
-
-

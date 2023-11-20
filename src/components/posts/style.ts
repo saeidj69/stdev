@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  padding-top: 400px;
+  
 
   p,
   span > card {
