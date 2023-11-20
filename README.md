@@ -6,10 +6,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## A few notes about the project:
+1) I have enabled multilingual and rtl.ltr to the project. But due to lack of time and the fact that it is a test project, I have not entered the texts in full.
+2) When editing a post, because it is mandatory to upload an image in the given api, a new image must be uploaded if there is no need to edit the image. In editing mode, Api usually uses the same previous image if the image is not changed.
+3) Due to the lack of time, the componentization was not done ideally.
+
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

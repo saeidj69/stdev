@@ -10,8 +10,8 @@ let baseURL = "https://rn-api.codebnb.me/";
 
 const config: AxiosRequestConfig = {
   baseURL: `${baseURL}`,
-  headers: {        
-    "Content-Type": "application/json"
+  headers: {
+    "Content-Type": "application/json",
   },
 };
 
@@ -20,7 +20,7 @@ const axiosInstance = axios.create(config);
 const token = () => typeof window === "object" && localStorage.getItem("token");
 
 axiosInstance.interceptors.request.use((config) => {
-  debugger
+  debugger;
   store.dispatch(activeLoading());
   //document.body.classList.add('loading-indicator');
   if (token()) {
@@ -31,7 +31,6 @@ axiosInstance.interceptors.request.use((config) => {
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    
     // document.body.classList.remove('loading-indicator');
 
     console.log(store);
@@ -63,23 +62,8 @@ axiosInstance.interceptors.response.use(
             placement: "bottomRight",
           });
         } else if (status === 401) {
-         // localStorage.clear();
-          //window.location.href = "/logout";
-          // let rf=localStorage.getItem("rfToken");
-          // originalRequest._retry = true;
-          // return axios.post(baseURL+'/auth/Authenticate/refreshToken?refreshToken='+rf).then((res)=>{
-          //   if(res.status===200){
-          //     localStorage.clear();
-          //     localStorage.setItem("token", res.data.data.token);
-          //     localStorage.setItem("rfToken", res.data.data.refreshToken);
-          //     originalRequest.headers.Authorization="Bearer "+res.data.data.token;
-          //     return axios(originalRequest);
-          //   }
-          //   if(res.status===500){
-          //     return;
-          //   }
-
-          // });
+          localStorage.clear();
+          window.location.href = "/login";
         } else {
           const errorMessage =
             (response.data as any)?.Error?.Message || "Unknown error";
