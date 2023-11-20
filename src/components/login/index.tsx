@@ -1,13 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Input, Card } from "antd";
+import { Form, Input, Card ,notification } from "antd";
 import { loginApi } from "../../api/auth";
 import Button from "../../components/uiKit/button";
 import { StyledContainer } from "./style";
 const LoginComponent = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const Context = React.createContext({ name: "Default" });
+  const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
     debugger;
    
@@ -23,8 +25,12 @@ const LoginComponent = () => {
         localStorage.setItem("userInfo",JSON.stringify(res.user));
         navigate("/posts");
       }
-    } catch (error) {
-      throw error;
+    } catch (error:any) {
+      api.error({
+        message: "Error",
+        description:error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
   const validateMessages = {
@@ -45,6 +51,7 @@ const LoginComponent = () => {
   };
   return (
     <StyledContainer>
+        {contextHolder}
       <Card>
       <h3>
             Login

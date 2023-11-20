@@ -43,8 +43,12 @@ const RegisterComponent = () => {
         localStorage.setItem("refreshToken", res.refreshToken);
         navigate("/login");
       }
-    } catch (error) {
-      throw error;
+    } catch (error:any) {
+      api.error({
+        message: "Error",
+        description:error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
   const validateMessages = {

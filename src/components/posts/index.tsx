@@ -8,6 +8,7 @@ import {
   PaginationProps,
   Modal,
   Skeleton,
+  notification,
 } from "antd";
 import Button from "../uiKit/button";
 import { useTranslation } from "react-i18next";
@@ -46,11 +47,14 @@ const PostComponent = () => {
     description: "",
     category: "",
   });
+  const Context = React.createContext({ name: "Default" });
+  const [api, contextHolder] = notification.useNotification();
 
   const { t } = useTranslation();
 
   const showModal = () => {
     setIsModalOpen(true);
+    setPreviewUrl(null)
   };
 
   function confirm(id: any) {
@@ -83,11 +87,19 @@ const PostComponent = () => {
   };
 
   const getPosts = async (pageIndex: number) => {
-    const res = await getAllPosts(pageSize, pageIndex);
-    if (res.status == 200) {
-      setPostsList(res.data.results);
-      setTotalCount(res.data.count);
-      setIsModalOpen(false);
+    try {
+      const res = await getAllPosts(pageSize, pageIndex);
+      if (res.status == 200) {
+        setPostsList(res.data.results);
+        setTotalCount(res.data.count);
+        setIsModalOpen(false);
+      }
+    } catch (error: any) {
+      api.error({
+        message: "Error",
+        description: error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
 
@@ -98,26 +110,50 @@ const PostComponent = () => {
   };
 
   const getAllCategories = async () => {
-    const res = await getCategoriesApi();
-    if (res.status == 200) {
-      setCategories(res.data);
+    try {
+      const res = await getCategoriesApi();
+      if (res.status == 200) {
+        setCategories(res.data);
+      }
+    } catch (error: any) {
+      api.error({
+        message: "Error",
+        description: error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
 
   const getPostItem = async (id: any) => {
     debugger;
-    const res = await getPostByIdApi(id);
-    if (res.status == 200) {
-      updatePostItem(res.data);
-      setPreviewUrl(res.data.image);
+    try {
+      const res = await getPostByIdApi(id);
+      if (res.status == 200) {
+        updatePostItem(res.data);
+        setPreviewUrl(res.data.image);
 
-      setIsModalOpen(true);
+        setIsModalOpen(true);
+      }
+    } catch (error: any) {
+      api.error({
+        message: "Error",
+        description: error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
   const deletePostItem = async (id: any) => {
-    const res = await deletePostApi(id);
-    if (res?.status == 204) {
-      getPosts(pageIndex);
+    try {
+      const res = await deletePostApi(id);
+      if (res?.status == 204) {
+        getPosts(pageIndex);
+      }
+    } catch (error: any) {
+      api.error({
+        message: "Error",
+        description: error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
 
@@ -162,8 +198,12 @@ const PostComponent = () => {
           form.resetFields();
         }
       }
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      api.error({
+        message: "Error",
+        description: error.response.data.detail,
+        placement: "topLeft",
+      });
     }
   };
 
@@ -214,6 +254,7 @@ const PostComponent = () => {
 
   return (
     <StyledContainer>
+      {contextHolder}
       <div>
         <Button type="primary" onClick={showModal}>
           Add
