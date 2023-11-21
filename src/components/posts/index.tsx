@@ -103,7 +103,7 @@ const PostComponent = () => {
     }
   };
 
-  const pageOnChange: PaginationProps["onChange"] = (page) => {
+  const pageOnChange: PaginationProps["onChange"] = (page) => {    
     setPageIndex(page - 1);
     setPaginationIndex(page);
     getPosts(page - 1);

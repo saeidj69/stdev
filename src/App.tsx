@@ -17,6 +17,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route element={<PanelLayout />}>            
             <Route path="/posts" element={<Posts />} />
+            <Route path="/" element={<Posts />} />
           </Route>
         </Route>
         <Route element={<LoginComponent />}>
