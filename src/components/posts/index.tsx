@@ -260,7 +260,7 @@ const PostComponent = () => {
           Add
         </Button>
       </div>
-      {isLoading ? (
+      {isLoading ? ( 
         <Skeleton active />
       ) : (
         <>
