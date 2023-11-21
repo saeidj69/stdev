@@ -3,7 +3,7 @@ const baseApiUrl = "api/user/logout/";
 
 
 export const logoutApi = async (data:any) => {
-  debugger;
+  
   try {
     const res = await axios.post(baseApiUrl,data);
     //localStorage.clear();

@@ -72,7 +72,7 @@ const PostComponent = () => {
   };
 
   const handleCancel = () => {
-    debugger;
+    
     setPostItem((prevPostItem) => ({
       ...prevPostItem,
       title: "",
@@ -125,7 +125,7 @@ const PostComponent = () => {
   };
 
   const getPostItem = async (id: any) => {
-    debugger;
+    
     try {
       const res = await getPostByIdApi(id);
       if (res.status == 200) {
@@ -167,8 +167,8 @@ const PostComponent = () => {
     getAllCategories();
   }, []);
   const onFinish = async (values: any) => {
-    debugger;
-    debugger;
+    
+    
 
     try {
       if (isEdit) {
@@ -223,7 +223,7 @@ const PostComponent = () => {
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debugger;
+    
     const file = event.target.files?.[0];
     setSelectedFile(event.target.files?.[0]);
 

@@ -20,7 +20,7 @@ const axiosInstance = axios.create(config);
 const token = () => typeof window === "object" && localStorage.getItem("token");
 
 axiosInstance.interceptors.request.use((config) => {
-  debugger;
+  
   store.dispatch(activeLoading());
   //document.body.classList.add('loading-indicator');
   if (token()) {
@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     // document.body.classList.remove('loading-indicator');
 
-    console.log(store);
+    
     store.dispatch(deActiveLoaing());
     return response;
   },

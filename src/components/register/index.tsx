@@ -17,7 +17,7 @@ const RegisterComponent = () => {
   const Context = React.createContext({ name: "Default" });
   const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
-    debugger;
+    
     if (values.password != values.confirm) {
       api.error({
         message: "Error",
@@ -38,7 +38,7 @@ const RegisterComponent = () => {
         image: selectedFile,
       });
       if (res) {
-        console.log(res);
+        
         localStorage.setItem("token", res.token);
         localStorage.setItem("refreshToken", res.refreshToken);
         navigate("/login");
@@ -79,7 +79,7 @@ const RegisterComponent = () => {
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debugger;
+    
     const file = event.target.files?.[0];
     setSelectedFile(event.target.files?.[0]);
 

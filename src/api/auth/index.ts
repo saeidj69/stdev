@@ -8,7 +8,7 @@ import {
 let baseUrl = process.env.REACT_APP_BASE_API;
 
 export const loginApi = async (data: any) => {
-  debugger;
+  
   store.dispatch(activeLoading());
 
   try {
@@ -22,7 +22,7 @@ export const loginApi = async (data: any) => {
 };
 
 export const RegisterApi = async (data: any) => {
-  debugger;
+  
   const formData = new FormData();
   formData.append("first_name", data.firstName);
   formData.append("last_name", data.lastName);

@@ -11,7 +11,7 @@ const LoginComponent = () => {
   const Context = React.createContext({ name: "Default" });
   const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
-    debugger;
+    
    
     try {
       const res = await loginApi({
@@ -19,7 +19,7 @@ const LoginComponent = () => {
         password: values.password,
       });
       if (res) {
-        console.log(res);
+        
         localStorage.setItem("token", res.token.access);
         localStorage.setItem("refreshToken", res.token.refresh);
         localStorage.setItem("userInfo",JSON.stringify(res.user));
