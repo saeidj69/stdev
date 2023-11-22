@@ -54,7 +54,7 @@ const PostComponent = () => {
 
   const showModal = () => {
     setIsModalOpen(true);
-    setPreviewUrl(null)
+    setPreviewUrl(null);
   };
 
   function confirm(id: any) {
@@ -72,7 +72,6 @@ const PostComponent = () => {
   };
 
   const handleCancel = () => {
-    
     setPostItem((prevPostItem) => ({
       ...prevPostItem,
       title: "",
@@ -103,7 +102,7 @@ const PostComponent = () => {
     }
   };
 
-  const pageOnChange: PaginationProps["onChange"] = (page) => {    
+  const pageOnChange: PaginationProps["onChange"] = (page) => {
     setPageIndex(page - 1);
     setPaginationIndex(page);
     getPosts(page - 1);
@@ -125,7 +124,6 @@ const PostComponent = () => {
   };
 
   const getPostItem = async (id: any) => {
-    
     try {
       const res = await getPostByIdApi(id);
       if (res.status == 200) {
@@ -167,9 +165,6 @@ const PostComponent = () => {
     getAllCategories();
   }, []);
   const onFinish = async (values: any) => {
-    
-    
-
     try {
       if (isEdit) {
         const res = await updatePostApi(
@@ -223,7 +218,6 @@ const PostComponent = () => {
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
     const file = event.target.files?.[0];
     setSelectedFile(event.target.files?.[0]);
 
@@ -260,7 +254,7 @@ const PostComponent = () => {
           Add
         </Button>
       </div>
-      {isLoading ? ( 
+      {isLoading ? (
         <Skeleton active />
       ) : (
         <>
@@ -276,7 +270,11 @@ const PostComponent = () => {
                 </div>
                 <div>
                   <p>Description</p>
-                  <span>{item.description}</span>
+                  <span>
+                    {item.description.length > 15
+                      ? item.description.substring(0, 15)+ "..."
+                      : item.description }
+                  </span>
                 </div>
                 <div>
                   <p>Category</p>
