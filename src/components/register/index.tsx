@@ -38,9 +38,14 @@ const RegisterComponent = () => {
         image: selectedFile,
       });
       if (res) {
-        
+        debugger
         localStorage.setItem("token", res.token);
         localStorage.setItem("refreshToken", res.refreshToken);
+        api.success({
+          message: "success",
+          description:res.message,
+          placement: "topLeft",
+        });
         navigate("/login");
       }
     } catch (error:any) {
